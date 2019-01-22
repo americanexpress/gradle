@@ -20,6 +20,9 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.Arrays;
+
+import static java.lang.String.format;
 
 public class BootstrapMainStarter {
     public void start(String[] args, File gradleHome) throws Exception {
@@ -35,11 +38,29 @@ public class BootstrapMainStarter {
     }
 
     private File findLauncherJar(File gradleHome) {
-        for (File file : new File(gradleHome, "lib").listFiles()) {
+        File libDir = new File(gradleHome, "lib");
+        if (!libDir.exists()) {
+            throw new IllegalStateException("lib directory does not exist in the Gradle distribution: "
+                    + libDir.getAbsolutePath());
+        }
+
+        if (!libDir.isDirectory()) {
+            throw new IllegalStateException("lib directory is not a directory in the Gradle distribution: "
+                    + libDir.getAbsolutePath());
+        }
+
+        File[] filesInLibDir = libDir.listFiles();
+        if (filesInLibDir == null) {
+            throw new IllegalStateException("Could not listFiles() in the lib directory in the Gradle distribution: "
+                    + libDir.getAbsolutePath());
+        }
+        for (File file : filesInLibDir) {
             if (file.getName().matches("gradle-launcher-.*\\.jar")) {
                 return file;
             }
         }
-        throw new RuntimeException(String.format("Could not locate the Gradle launcher JAR in Gradle distribution '%s'.", gradleHome));
+        throw new RuntimeException(format("Could not locate the Gradle launcher JAR in Gradle distribution '%s'\n" +
+                        "Directory contained these files: %s.", gradleHome,
+                Arrays.toString(filesInLibDir)));
     }
 }
