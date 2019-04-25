@@ -42,8 +42,10 @@ testFixtures {
 
 jmh {
     withGroovyBuilder {
-        setProperty("include", listOf("HashingAlgorithmsBenchmark"))
+        setProperty("include", listOf("HashingAlgorithmsBenchmark", "HashingBenchmark", "MessageDigestHasherBenchmark", "MessageDigestThreadingBenchmark"))
     }
+    //profilers = listOf(/*"gc",*/ "stack")
+    resultFormat = "JSON"
 }
 
 val buildReceiptPackage: String by rootProject.extra
