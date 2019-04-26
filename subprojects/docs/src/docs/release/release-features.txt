@@ -1,3 +1,1 @@
- - Run builds with JDK12
- - New API for Incremental Tasks
- - Updates to native projects, including Swift 5 support
+ - Kickstart Gradle plugin development with gradle init
