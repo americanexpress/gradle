@@ -36,13 +36,13 @@ import org.openjdk.jmh.infra.Blackhole;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 /**
- * Benchmark              (hashSize)   Mode  Cnt        Score       Error  Units
- * HashingBenchmark.md5         1024  thrpt    5  1212734.919 ±  2363.204  ops/s
- * HashingBenchmark.md5        65536  thrpt    5    29263.640 ±   445.377  ops/s
- * HashingBenchmark.md5     67108864  thrpt    5       28.775 ±     0.280  ops/s
- * HashingBenchmark.sha1        1024  thrpt    5   822945.914 ± 12295.094  ops/s
- * HashingBenchmark.sha1       65536  thrpt    5    18905.470 ±   305.588  ops/s
- * HashingBenchmark.sha1    67108864  thrpt    5       19.748 ±     0.586  ops/s
+ * Benchmark            (hashSize)   Mode  Cnt          Score          Error  Units
+ * HashingBenchmark.md5       1024  thrpt    5    1142376.036 ±    10167.558  ops/s
+ * HashingBenchmark.md5      65536  thrpt    5      28358.959 ±      198.862  ops/s
+ * HashingBenchmark.md5   67108864  thrpt    5         29.149 ±        0.491  ops/s
+ * HashingBenchmark.sha1      1024  thrpt    5     791591.496 ±    53650.172  ops/s
+ * HashingBenchmark.sha1     65536  thrpt    5      18415.121 ±      165.148  ops/s
+ * HashingBenchmark.sha1  67108864  thrpt    5         19.331 ±        0.590  ops/s
  **/
 @Fork(1)
 @Threads(4)
